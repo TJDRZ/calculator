@@ -59,8 +59,7 @@ button {
     background-color: #aaa;
 }
 
-#clear {
-    grid-column: 1 / 3;
+#clear, #backspace{
     background-color: rgb(120, 120, 120);
 }
 

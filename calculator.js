@@ -22,6 +22,7 @@ const times = document.querySelector('#multiply');
 const divBy = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
+const backspace = document.querySelector('#backspace');
 const display = document.querySelector('#window');
 const numbers = document.querySelector('.numbers').childNodes;
 const point = document.querySelector('#point');
@@ -32,6 +33,12 @@ let calc = false;
 let decimal = false;
 
 function decimalCheck (){
+    if (display.textContent.match(/\./) != null){
+        decimal = true;
+    }
+    else {
+        decimal = false;
+    }
     if (decimal == false) {
         point.disabled = false;
     }
@@ -47,6 +54,11 @@ clear.addEventListener('click', function(){
     decimal = false;
 })
 
+backspace.addEventListener('click', function(){
+    display.textContent = display.textContent.slice(0, -1);   
+    decimalCheck();  
+})
+
 numbers.forEach(number => {
     number.addEventListener('click', function(){
         if (calc == true) {
@@ -54,9 +66,6 @@ numbers.forEach(number => {
         }
         calc = false;
         display.textContent += number.textContent;
-        if (display.textContent.match(/\./) != null){
-            decimal = true;
-        }
         decimalCheck();
     })
 })
