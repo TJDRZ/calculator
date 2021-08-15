@@ -27,7 +27,7 @@ h1 {
     align-self: start;
     height: 50%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     padding: 5px;
 }
