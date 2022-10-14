@@ -1,0 +1,23 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "This is a calculator project for The Odin Project",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TJDRZ/calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TJDRZ/calculator/issues"
+  },
+  "homepage": "https://github.com/TJDRZ/calculator#readme",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}

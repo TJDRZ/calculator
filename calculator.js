@@ -1,117 +1,96 @@
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
-const operate = (operator, a, b) => {
-    if (operator === plus) {
-        return add(a, b);
-    }
-    else if (operator === minus) {
-        return subtract(a, b);
-    }
-    else if (operator === times) {
-        return multiply(a, b);
-    }
-    else if (operator === divBy) {
-        return divide(a, b);
+var _a;
+var add = document.querySelector("#add");
+var subtract = document.querySelector("#subtract");
+var multiply = document.querySelector("#multiply");
+var divide = document.querySelector("#divide");
+var equate = document.querySelector("#equate");
+var clear = document.querySelector("#clear");
+var backspace = document.querySelector("#backspace");
+var display = document.querySelector("#display");
+var numbers = (_a = document === null || document === void 0 ? void 0 : document.querySelector(".numbers")) === null || _a === void 0 ? void 0 : _a.childNodes;
+var decimal = document.querySelector("#decimal");
+var operator = "";
+var displayPrevValue = 0;
+var calc = false;
+var operate = function (operator, a, b) {
+    switch (operator) {
+        case "add":
+            return a + b;
+        case "subtract":
+            return a - b;
+        case "multiply":
+            return a * b;
+        case "divide":
+            return a / b;
+        default:
+            return 0;
     }
 };
-const plus = document.querySelector('#add');
-const minus = document.querySelector('#subtract');
-const times = document.querySelector('#multiply');
-const divBy = document.querySelector('#divide');
-const equals = document.querySelector('#equals');
-const clear = document.querySelector('#clear');
-const backspace = document.querySelector('#backspace');
-const display = document.querySelector('#window');
-const numbers = document.querySelector('.numbers').childNodes;
-const point = document.querySelector('#point');
-
-let operator = '';
-let display_value = '';
-let calc = false;
-let decimal = false;
-
-function decimalCheck (){
-    if (display.textContent.match(/\./) != null){
-        decimal = true;
-    }
-    else {
-        decimal = false;
-    }
-    if (decimal == false) {
-        point.disabled = false;
-    }
-    else{
-        point.disabled = true;
-    }
-}
-
-clear.addEventListener('click', function(){
-    display.textContent = '';
-    display_value = '';
-    operator = '';
-    decimal = false;
-})
-
-backspace.addEventListener('click', function(){
-    display.textContent = display.textContent.slice(0, -1);   
-    decimalCheck();  
-})
-
-numbers.forEach(number => {
-    number.addEventListener('click', function(){
-        if (calc == true) {
-            display.textContent = '';
+var decimalCheck = function () {
+    var _a;
+    ((_a = display.textContent) === null || _a === void 0 ? void 0 : _a.match(/\./))
+        ? (decimal.disabled = true)
+        : (decimal.disabled = false);
+};
+clear.addEventListener("click", function () {
+    display.textContent = "";
+    displayPrevValue = 0;
+    operator = "";
+    decimalCheck();
+});
+backspace.addEventListener("click", function () {
+    var _a;
+    display.textContent = ((_a = display === null || display === void 0 ? void 0 : display.textContent) === null || _a === void 0 ? void 0 : _a.slice(0, -1)) || '0';
+    decimalCheck();
+});
+numbers === null || numbers === void 0 ? void 0 : numbers.forEach(function (number) {
+    number.addEventListener("click", function () {
+        if (calc === true) {
+            display.textContent = "";
+            calc = false;
         }
-        calc = false;
-        display.textContent += number.textContent;
+        display.textContent += number.textContent || '0';
         decimalCheck();
-    })
-})
-
-plus.addEventListener('click', function(){
-    if (operator != '') {
-        display.textContent = operate(operator, Number(display_value), Number(display.textContent));
+    });
+});
+add.addEventListener("click", function () {
+    if (operator != "") {
+        display.textContent = operate(operator, displayPrevValue, parseFloat(display.textContent || '0')).toString();
     }
-    display_value = display.textContent;
-    operator = plus;
+    displayPrevValue = parseFloat(display.textContent || '0');
+    operator = "add";
     calc = true;
-    decimal = false;
-})
-
-minus.addEventListener('click', function(){
-    if (operator != '') {
-        display.textContent = operate(operator, Number(display_value), Number(display.textContent));
+    decimalCheck();
+});
+subtract.addEventListener("click", function () {
+    if (operator != "") {
+        display.textContent = operate(operator, displayPrevValue, parseFloat(display.textContent || '0')).toString();
     }
-    display_value = display.textContent;
-    operator = minus;
+    displayPrevValue = parseFloat(display.textContent || '0');
+    operator = "subtract";
     calc = true;
-    decimal = false;
-})
-
-times.addEventListener('click', function(){
-    if (operator != '') {
-        display.textContent = operate(operator, Number(display_value), Number(display.textContent));
+    decimalCheck();
+});
+multiply.addEventListener("click", function () {
+    if (operator != "") {
+        display.textContent = operate(operator, displayPrevValue, parseFloat(display.textContent || '0')).toString();
     }
-    display_value = display.textContent;
-    operator = times;
+    displayPrevValue = parseFloat(display.textContent || '0');
+    operator = "multiply";
     calc = true;
-    decimal = false;
-})
-
-divBy.addEventListener('click', function(){
-    if (operator != '') {
-        display.textContent = operate(operator, Number(display_value), Number(display.textContent));
+    decimalCheck();
+});
+divide.addEventListener("click", function () {
+    if (operator != "") {
+        display.textContent = operate(operator, displayPrevValue, parseFloat(display.textContent || '0')).toString();
     }
-    display_value = display.textContent;
-    operator = divBy;
+    displayPrevValue = parseFloat(display.textContent || '0');
+    operator = "divide";
     calc = true;
-    decimal = false;
-})
-
-equals.addEventListener('click', function(){
-    display.textContent = operate(operator, Number(display_value), Number(display.textContent));
-    operator = '';
-    decimal = false;
-})
+    decimalCheck();
+});
+equate.addEventListener("click", function () {
+    display.textContent = operate(operator, displayPrevValue, parseFloat(display.textContent || '0')).toString();
+    operator = "";
+    decimalCheck();
+});

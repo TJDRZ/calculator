@@ -20,7 +20,7 @@ h1 {
     background-color: rgb(211, 90, 90);
 }
 
-#window {
+#display {
     background-color: #ddd;
     grid-column: 1 / 3;
     justify-self: stretch;
